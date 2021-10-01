@@ -34,7 +34,7 @@ def update_damage_list(damage_list):
 		else:								# Converts Ms to 1,000,000 or Bs to 1,000,000,000 from item and appends to list
 			if "M" in each :
 				num = float(each[0:each.index("M")])
-				updated_damage_list.append(num * 1000000)
+				updated_damage_list.append(num * 1000000)   #  <------->   Update these to depend on conversion dict, Hunter
 				#print(each.find('M'))
 
 
@@ -45,15 +45,26 @@ def update_damage_list(damage_list):
 	return updated_damage_list
 
 
-print("\n\n UPdated list:")
+print("\n\n UPdated damage list")
 print(update_damage_list(damages))
 
 
 # 2 
 # Create a Table
+def make_hurricane_table(names, months, years, max_sustained_winds, areas_affected, deaths):
+	# Intended result: "Cuba I" would have the value: {'Name': 'Cuba I', 'Month': 'October', 'Year': 1924, 'Max Sustained Wind': 165, 'Areas Affected': ['Central America', 'Mexico', 'Cuba', 'Florida', 'The Bahamas'], 'Damage': 'Damages not recorded', 'Deaths': 90}
+
+	hurricane_table_f = {}
+	for n, m, y, msw, aa, d in zip(names, months, years, max_sustained_winds, areas_affected, deaths):
+		 hurricane_table_f[n] = m, y, msw, aa, d
+	return hurricane_table_f
+
 
 # Create and view the hurricanes dictionary
-
+hurricane_table = make_hurricane_table(names, months, years, max_sustained_winds, areas_affected, deaths)
+for k, v in hurricane_table.items():
+	print("\n")
+	print("Hurricane: {} happened in {}, {} had sustained winds of {}, affected {} and resulted in {} deaths.".format(k, v[0], v[1], v[2], str(v[3]), v[4]))
 # 3
 # Organizing by Year
 
@@ -91,10 +102,10 @@ print(update_damage_list(damages))
 
 # 9
 # Rating Hurricanes by Damage
-damage_scale = {0: 0,
-                1: 100000000,
-                2: 1000000000,
-                3: 10000000000,
-                4: 50000000000}
+# damage_scale = {0: 0,
+#                 1: 100000000,
+#                 2: 1000000000,
+#                 3: 10000000000,
+#                 4: 50000000000}
   
 # categorize hurricanes in new dictionary with damage severity as key
