@@ -34,8 +34,8 @@ def update_damage_list(damage_list):
 		else:								# Converts Ms to 1,000,000 or Bs to 1,000,000,000 from item and appends to list
 			if "M" in each :
 				num = float(each[0:each.index("M")])
-				updated_damage_list.append(num * 1000000)   #  <------->   Update these to depend on conversion dict, Hunter
-				#print(each.find('M'))
+				updated_damage_list.append(num * 1000000) #  <------->   Update these to depend on conversion dict, Hunter
+				
 
 
 			elif "B" in each:
@@ -64,13 +64,32 @@ def make_hurricane_table(names, months, years, max_sustained_winds, areas_affect
 hurricane_table = make_hurricane_table(names, months, years, max_sustained_winds, areas_affected, deaths)
 for k, v in hurricane_table.items():
 	print("\n")
-	print("Hurricane: {} happened in {}, {} had sustained winds of {}, affected {} and resulted in {} deaths.".format(k, v[0], v[1], v[2], str(v[3]), v[4]))
+	print("Hurricane {} happened in {}, {} had sustained winds of {}, affected {} and resulted in {} deaths.".format(k, v[0], v[1], v[2], v[3], v[4])) #<-------------------Update Formating on v[3]
 # 3
 # Organizing by Year
 
 # create a new dictionary of hurricanes with year and key
+def organize_by_year(hdict):
+	new_dict = {}
+	years_fnl = []
+	
+	for each in hdict.values(): # Update the list of years that had hurricane
+		if each[1] not in years_fnl:
+			years_fnl.append(each[1])
+	#print(years_fnl)
 
+	for y, k, v in zip(years_fnl, hdict.keys(), hdict.values()):
+		if y not in new_dict.keys():
+			new_dict[y] = dict([(k, v)])
+	print(new_dict)
+	return new_dict
 
+#print(hurricane_table)
+hurricane_table_by_year = organize_by_year(hurricane_table)
+
+for k, v in hurricane_table_by_year.items():
+	print("\nIn {} was hurricane(s) {}".format(k, v[0].keys
+		))
 # 4
 # Counting Damaged Areas
 
