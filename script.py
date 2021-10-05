@@ -197,6 +197,18 @@ times_hit = times_hit_by_hurricane(hurricane_table)
 # 5 
 # Calculating Maximum Hurricane Count
 
+def hit_most_times(hitdict):
+	
+	a = max(hitdict, key=hitdict.get)
+	all_values = hitdict.values()
+	t = max(all_values)
+
+	return a, t
+	 
+
+b, s = hit_most_times(times_hit) 
+print(b + " was hit the most times with a count of " + str(s) + " times")
+
 # find most frequently affected area and the number of hurricanes involved in
 
 
