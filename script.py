@@ -87,9 +87,42 @@ def organize_by_year(hdict):
 #print(hurricane_table)
 hurricane_table_by_year = organize_by_year(hurricane_table)
 
-for k, v in hurricane_table_by_year.items():
-	print("\nIn {} was hurricane(s) {}".format(k, v[0].keys
-		))
+
+#{1924: {'Cuba I': ('October', 1924, 165, ['Central America', 'Mexico', 'Cuba', 'Florida', 'The Bahamas'], 90)}, 
+# 1928: {'San Felipe II Okeechobee': ('September', 1928, 160, ['Lesser Antilles', 'The Bahamas', 'United States East Coast', 'Atlantic Canada'], 4000)},
+# 1932: {'Bahamas': ('September', 1932, 160, ['The Bahamas', 'Northeastern United States'], 16)}, 
+# 1933: {'Cuba II': ('November', 1932, 175, ['Lesser Antilles', 'Jamaica', 'Cayman Islands', 'Cuba', 'The Bahamas', 'Bermuda'], 3103)}, 
+# 1935: {'CubaBrownsville': ('August', 1933, 160, ['The Bahamas', 'Cuba', 'Florida', 'Texas', 'Tamaulipas'], 179)}, 1938: {'Tampico': ('September', 1933, 160, ['Jamaica', 'Yucatn Peninsula'], 184)}, 
+# 1953: {'Labor Day': ('September', 1935, 185, ['The Bahamas', 'Florida', 'Georgia', 'The Carolinas', 'Virginia'], 408)}, 
+# 1955: {'New England': ('September', 1938, 160, ['Southeastern United States', 'Northeastern United States', 'Southwestern Quebec'], 682)}, 
+# 1961: {'Carol': ('September', 1953, 160, ['Bermuda', 'New England', 'Atlantic Canada'], 5)}, 
+# 1967: {'Janet': ('September', 1955, 175, ['Lesser Antilles', 'Central America'], 1023)}, 
+# 1969: {'Carla': ('September', 1961, 175, ['Texas', 'Louisiana', 'Midwestern United States'], 43)}, 1971: {'Hattie': ('October', 1961, 160, ['Central America'], 319)}, 
+# 1977: {'Beulah': ('September', 1967, 160, ['The Caribbean', 'Mexico', 'Texas'], 688)}, 
+# 1979: {'Camille': ('August', 1969, 175, ['Cuba', 'United States Gulf Coast'], 259)}, 
+# 1980: {'Edith': ('September', 1971, 160, ['The Caribbean', 'Central America', 'Mexico', 'United States Gulf Coast'], 37)}, 
+# 1988: {'Anita': ('September', 1977, 175, ['Mexico'], 11)}, 1989: {'David': ('August', 1979, 175, ['The Caribbean', 'United States East coast'], 2068)}, 
+# 1992: {'Allen': ('August', 1980, 190, ['The Caribbean', 'Yucatn Peninsula', 'Mexico', 'South Texas'], 269)}, 
+# 1998: {'Gilbert': ('September', 1988, 185, ['Jamaica', 'Venezuela', 'Central America', 'Hispaniola', 'Mexico'], 318)}, 
+# 2003: {'Hugo': ('September', 1989, 160, ['The Caribbean', 'United States East Coast'], 107)}, 
+# 2004: {'Andrew': ('August', 1992, 175, ['The Bahamas', 'Florida', 'United States Gulf Coast'], 65)}, 2005: {'Mitch': ('October', 1998, 180, ['Central America', 'Yucatn Peninsula', 'South Florida'], 19325)}, 
+# 2007: {'Isabel': ('September', 2003, 165, ['Greater Antilles', 'Bahamas', 'Eastern United States', 'Ontario'], 51)}, 
+# 2016: {'Ivan': ('September', 2004, 165, ['The Caribbean', 'Venezuela', 'United States Gulf Coast'], 124)}, 
+# 2017: {'Emily': ('July', 2005, 160, ['Windward Islands', 'Jamaica', 'Mexico', 'Texas'], 17)}, 
+# 2018: {'Katrina': ('August', 2005, 175, ['Bahamas', 'United States Gulf Coast'], 1836)}}
+
+for p_id, p_info in hurricane_table_by_year.items():
+    #print("\nPerson ID:", p_id)
+    
+    for key in p_info:
+       # print(key + ':', p_info[key])
+        print("\nIn {} was hurricane(s) {}".format(p_id, p_info.keys()))
+
+# for k, v in hurricane_table_by_year.items():
+# 	print("\nIn {} was hurricane(s) {}".format(k, v[0].keys
+# 		))
+
+
 # 4
 # Counting Damaged Areas
 
