@@ -65,6 +65,41 @@ hurricane_table = make_hurricane_table(names, months, years, max_sustained_winds
 for k, v in hurricane_table.items():
 	print("\n")
 	print("Hurricane {} happened in {}, {} had sustained winds of {}, affected {} and resulted in {} deaths.".format(k, v[0], v[1], v[2], v[3], v[4])) #<-------------------Update Formating on v[3]
+#{  hurricane table
+#'Cuba I': ('October', 1924, 165, ['Central America', 'Mexico', 'Cuba', 'Florida', 'The Bahamas'], 90), 
+#'San Felipe II Okeechobee': ('September', 1928, 160, ['Lesser Antilles', 'The Bahamas', 'United States East Coast', 'Atlantic Canada'], 4000), 
+#'Bahamas': ('September', 1932, 160, ['The Bahamas', 'Northeastern United States'], 16), 'Cuba II': ('November', 1932, 175, ['Lesser Antilles', 'Jamaica', 'Cayman Islands', 'Cuba', 'The Bahamas', 'Bermuda'], 3103), 
+#'CubaBrownsville': ('August', 1933, 160, ['The Bahamas', 'Cuba', 'Florida', 'Texas', 'Tamaulipas'], 179), 
+#'Tampico': ('September', 1933, 160, ['Jamaica', 'Yucatn Peninsula'], 184), 
+#'Labor Day': ('September', 1935, 185, ['The Bahamas', 'Florida', 'Georgia', 'The Carolinas', 'Virginia'], 408), 'New England': ('September', 1938, 160, ['Southeastern United States', 'Northeastern United States', 'Southwestern Quebec'], 682), 
+# 'Carol': ('September', 1953, 160, ['Bermuda', 'New England', 'Atlantic Canada'], 5), 
+# 'Janet': ('September', 1955, 175, ['Lesser Antilles', 'Central America'], 1023), 
+# 'Carla': ('September', 1961, 175, ['Texas', 'Louisiana', 'Midwestern United States'], 43), 
+# 'Hattie': ('October', 1961, 160, ['Central America'], 319), 
+# 'Beulah': ('September', 1967, 160, ['The Caribbean', 'Mexico', 'Texas'], 688), 
+# 'Camille': ('August', 1969, 175, ['Cuba', 'United States Gulf Coast'], 259), 
+# 'Edith': ('September', 1971, 160, ['The Caribbean', 'Central America', 'Mexico', 'United States Gulf Coast'], 37), 
+# 'Anita': ('September', 1977, 175, ['Mexico'], 11), 
+# 'David': ('August', 1979, 175, ['The Caribbean', 'United States East coast'], 2068), 
+# 'Allen': ('August', 1980, 190, ['The Caribbean', 'Yucatn Peninsula', 'Mexico', 'South Texas'], 269), 
+# 'Gilbert': ('September', 1988, 185, ['Jamaica', 'Venezuela', 'Central America', 'Hispaniola', 'Mexico'], 318), 
+# 'Hugo': ('September', 1989, 160, ['The Caribbean', 'United States East Coast'], 107), 
+# 'Andrew': ('August', 1992, 175, ['The Bahamas', 'Florida', 'United States Gulf Coast'], 65), 
+# 'Mitch': ('October', 1998, 180, ['Central America', 'Yucatn Peninsula', 'South Florida'], 19325), 
+# 'Isabel': ('September', 2003, 165, ['Greater Antilles', 'Bahamas', 'Eastern United States', 'Ontario'], 51), 
+# 'Ivan': ('September', 2004, 165, ['The Caribbean', 'Venezuela', 'United States Gulf Coast'], 124), 
+# 'Emily': ('July', 2005, 160, ['Windward Islands', 'Jamaica', 'Mexico', 'Texas'], 17), 
+# 'Katrina': ('August', 2005, 175, ['Bahamas', 'United States Gulf Coast'], 1836), 
+# 'Rita': ('September', 2005, 180, ['Cuba', 'United States Gulf Coast'], 125), 
+# 'Wilma': ('October', 2005, 185, ['Greater Antilles', 'Central America', 'Florida'], 87), 
+# 'Dean': ('August', 2007, 175, ['The Caribbean', 'Central America'], 45), 
+# 'Felix': ('September', 2007, 175, ['Nicaragua', 'Honduras'], 133), 
+# 'Matthew': ('October', 2016, 165, ['Antilles', 'Venezuela', 'Colombia', 'United States East Coast', 'Atlantic Canada'], 603), 
+# 'Irma': ('September', 2017, 180, ['Cape Verde', 'The Caribbean', 'British Virgin Islands', 'U.S. Virgin Islands', 'Cuba', 'Florida'], 138), 
+# 'Maria': ('September', 2017, 175, ['Lesser Antilles', 'Virgin Islands', 'Puerto Rico', 'Dominican Republic', 'Turks and Caicos Islands'], 3057), 
+# 'Michael': ('October', 2018, 160, ['Central America', 'United States Gulf Coast (especially Florida Panhandle)'], 74)}
+
+
 # 3
 # Organizing by Year
 
@@ -88,7 +123,8 @@ def organize_by_year(hdict):
 hurricane_table_by_year = organize_by_year(hurricane_table)
 
 
-#{1924: {'Cuba I': ('October', 1924, 165, ['Central America', 'Mexico', 'Cuba', 'Florida', 'The Bahamas'], 90)}, 
+#{
+#1924: {'Cuba I': ('October', 1924, 165, ['Central America', 'Mexico', 'Cuba', 'Florida', 'The Bahamas'], 90)}, 
 # 1928: {'San Felipe II Okeechobee': ('September', 1928, 160, ['Lesser Antilles', 'The Bahamas', 'United States East Coast', 'Atlantic Canada'], 4000)},
 # 1932: {'Bahamas': ('September', 1932, 160, ['The Bahamas', 'Northeastern United States'], 16)}, 
 # 1933: {'Cuba II': ('November', 1932, 175, ['Lesser Antilles', 'Jamaica', 'Cayman Islands', 'Cuba', 'The Bahamas', 'Bermuda'], 3103)}, 
@@ -127,6 +163,35 @@ for p_id, p_info in hurricane_table_by_year.items():
 # Counting Damaged Areas
 
 # create dictionary of areas to store the number of hurricanes involved in
+def times_hit_by_hurricane(hdict):
+	areas_affected_list = [] #Is this necessary?
+	areas_affected_dict = {}
+	for i in areas_affected:
+		for each in i:
+			if each not in areas_affected_list:
+				areas_affected_list.append(each) 
+
+
+	for v in hurricane_table.values():
+		for w in v[3]:
+		
+   		# Count the number of times each unique value appears and append tthe count to a dictionary. EX: {"Texas": 3, "Bahamas": 4, etc...}
+			if w in areas_affected_dict:
+				areas_affected_dict[w] = areas_affected_dict[w] + 1
+			else:
+				areas_affected_dict[w] = 1
+
+ 
+
+
+	
+	return areas_affected_dict 
+
+	
+
+times_hit = times_hit_by_hurricane(hurricane_table)
+
+
 
 
 # 5 
