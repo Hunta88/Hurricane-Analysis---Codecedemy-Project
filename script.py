@@ -46,11 +46,13 @@ def update_damage_list(damage_list):
 
 
 print("\n\n UPdated damage list")
-print(update_damage_list(damages))
+new_damage_list = update_damage_list(damages)
 
 
 # 2 
 # Create a Table
+
+print("\n\n\n Create Hurricane Table")
 def make_hurricane_table(names, months, years, max_sustained_winds, areas_affected, deaths):
 	# Intended result: "Cuba I" would have the value: {'Name': 'Cuba I', 'Month': 'October', 'Year': 1924, 'Max Sustained Wind': 165, 'Areas Affected': ['Central America', 'Mexico', 'Cuba', 'Florida', 'The Bahamas'], 'Damage': 'Damages not recorded', 'Deaths': 90}
 
@@ -68,10 +70,12 @@ for k, v in hurricane_table.items():
 #{  hurricane table
 #'Cuba I': ('October', 1924, 165, ['Central America', 'Mexico', 'Cuba', 'Florida', 'The Bahamas'], 90), 
 #'San Felipe II Okeechobee': ('September', 1928, 160, ['Lesser Antilles', 'The Bahamas', 'United States East Coast', 'Atlantic Canada'], 4000), 
-#'Bahamas': ('September', 1932, 160, ['The Bahamas', 'Northeastern United States'], 16), 'Cuba II': ('November', 1932, 175, ['Lesser Antilles', 'Jamaica', 'Cayman Islands', 'Cuba', 'The Bahamas', 'Bermuda'], 3103), 
+#'Bahamas': ('September', 1932, 160, ['The Bahamas', 'Northeastern United States'], 16), 
+#'Cuba II': ('November', 1932, 175, ['Lesser Antilles', 'Jamaica', 'Cayman Islands', 'Cuba', 'The Bahamas', 'Bermuda'], 3103), 
 #'CubaBrownsville': ('August', 1933, 160, ['The Bahamas', 'Cuba', 'Florida', 'Texas', 'Tamaulipas'], 179), 
 #'Tampico': ('September', 1933, 160, ['Jamaica', 'Yucatn Peninsula'], 184), 
-#'Labor Day': ('September', 1935, 185, ['The Bahamas', 'Florida', 'Georgia', 'The Carolinas', 'Virginia'], 408), 'New England': ('September', 1938, 160, ['Southeastern United States', 'Northeastern United States', 'Southwestern Quebec'], 682), 
+#'Labor Day': ('September', 1935, 185, ['The Bahamas', 'Florida', 'Georgia', 'The Carolinas', 'Virginia'], 408), 
+#'New England': ('September', 1938, 160, ['Southeastern United States', 'Northeastern United States', 'Southwestern Quebec'], 682), 
 # 'Carol': ('September', 1953, 160, ['Bermuda', 'New England', 'Atlantic Canada'], 5), 
 # 'Janet': ('September', 1955, 175, ['Lesser Antilles', 'Central America'], 1023), 
 # 'Carla': ('September', 1961, 175, ['Texas', 'Louisiana', 'Midwestern United States'], 43), 
@@ -104,6 +108,7 @@ for k, v in hurricane_table.items():
 # Organizing by Year
 
 # create a new dictionary of hurricanes with year and key
+print("\n\n\n Organize by Year")
 def organize_by_year(hdict):
 	new_dict = {}
 	years_fnl = []
@@ -161,7 +166,7 @@ for p_id, p_info in hurricane_table_by_year.items():
 
 # 4
 # Counting Damaged Areas
-
+print("\n\n\n Counting Damaged Areas")
 # create dictionary of areas to store the number of hurricanes involved in
 def times_hit_by_hurricane(hdict):
 	areas_affected_list = [] #Is this necessary?
@@ -197,6 +202,7 @@ times_hit = times_hit_by_hurricane(hurricane_table)
 # 5 
 # Calculating Maximum Hurricane Count
 
+print("\n\n\n Calculating Maximum Hurricane Count")
 def hit_most_times(hitdict):
 	
 	a = max(hitdict, key=hitdict.get)
@@ -214,27 +220,139 @@ print(b + " was hit the most times with a count of " + str(s) + " times")
 
 # 6
 # Calculating the Deadliest Hurricane
+print("\n\n\n Calculating the Deadliest Hurricane")
+def deadliest_hurricane(hdict):
+	tupl = max((i[1][-1], i[0]) for i in hdict.items())
+	print("The Deadliest Hurricane was " + tupl[1] + " with " + str(tupl[0]) + " deaths.")
 
-# find highest mortality hurricane and the number of deaths
+
+	return
+
+deadliest_hurricane(hurricane_table)	
+
 
 # 7
 # Rating Hurricanes by Mortality
 
+print("\n\n\n Rating Hurricanes by Mortality")
+mortality_scale = {0: 0,
+                   1: 100,
+                   2: 500,
+                   3: 1000,
+                   4: 10000}
+
 
 # categorize hurricanes in new dictionary with mortality severity as key
 
+def rate_hurricane(hdict):
+
+	ratings = {0 : [] , 1 : [] , 2: [], 3: [], 4: [], 5:[]}
+
+	for k, v in hdict.items():
+	    if v[-1] == 0:
+	        ratings[0].append({k : v[-1]})
+	    if v[-1] > 0 and v[-1] <= 100:
+	        ratings[1].append({k : v[-1]})
+	    if v[-1] > 100 and v[-1] <= 500:
+	        ratings[2].append({k : v[-1]})
+	    if v[-1] > 500 and v[-1] <= 1000:
+	        ratings[3].append({k : v[-1]})
+	    if v[-1] > 1000 and v[-1] <= 10000:
+	        ratings[4].append({k : v[-1]})
+	    if v[-1] > 10000:
+	        ratings[5].append({k : v[-1]})
+
+
+
+
+	return ratings
+
+
+
+
+
+
+# Expected of example of rating: 1 : [{name_of_h : mortality}, {name_of_h : mortality}]
+
+
+
+
+hurricane_ratings = rate_hurricane(hurricane_table)
+
+print("\n\n\n     Hurricane Ratings")
+print(hurricane_ratings)
 
 # 8 Calculating Hurricane Maximum Damage
+print("\n\n\n Calculating Hurricane Maximum Damage")
+
+def find_most_damaging_hurricane(dam, h_names):
+	
+	#convert all instances of "Damages not recorded" to 0
+	for idx, item in enumerate(dam):
+	 	if item == "Damages not recorded":
+	 		dam[idx] = 0
+
+	#find index of highest value in list dam 
+
+	highest_dam_idx = dam.index(max(dam))
+
+	#print something with the Highest vale and it correspoding hurricane
+
+	
+
+
+	print("\n\nThe Costliest Hurricane was " + h_names[highest_dam_idx] + " with a of $" + str(max(dam)) + " in damages.")
+
+
+	return
+
+find_most_damaging_hurricane(new_damage_list, names)	
+
 
 # find highest damage inducing hurricane and its total cost
 
 
 # 9
 # Rating Hurricanes by Damage
-# damage_scale = {0: 0,
-#                 1: 100000000,
-#                 2: 1000000000,
-#                 3: 10000000000,
-#                 4: 50000000000}
+print("\n\n\n Rating Hurricanes by Damage")
+damage_scale = {0: 0,
+                 1: 100000000,
+                 2: 1000000000,
+                 3: 10000000000,
+                 4: 50000000000}
+
+def rate_hurricane_damage(dam, h_names):
+
+	ratings = {0 : [] , 1 : [] , 2: [], 3: [], 4: [], 5:[]}
+	for idx, item in enumerate(dam):
+	 	if item == "Damages not recorded":
+	 		dam[idx] = 0
+
+
+	for idx, item in enumerate(dam):
+		if dam[idx] == 0:
+			ratings[0].append({h_names[idx] : dam[idx]})
+		if dam[idx] > 0 and dam[idx] <= 100000000:
+			ratings[1].append({h_names[idx] : dam[idx]})
+		if dam[idx] > 100000000 and dam[idx] <= 1000000000:
+			ratings[2].append({h_names[idx] : dam[idx]}) 
+		if dam[idx] > 1000000000 and dam[idx] <= 10000000000:
+			ratings[3].append({h_names[idx] : dam[idx]})
+		if dam[idx] > 10000000000 and dam[idx] <= 50000000000:
+			ratings[4].append({h_names[idx] : dam[idx]})
+		if dam[idx] > 50000000000:
+			ratings[5].append({h_names[idx] : dam[idx]})
+
+
+
+
+	return ratings
+
+
+
+damage_ratings = rate_hurricane_damage(new_damage_list, names)
+
+print("\n Hurricane Damage Ratings")
+print(damage_ratings)
   
 # categorize hurricanes in new dictionary with damage severity as key
